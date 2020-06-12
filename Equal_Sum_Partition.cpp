@@ -52,11 +52,11 @@ int main()
 
         if(subsetSum(arr,n,Partition))
         {
-            cout<<"true";
+            cout<<"partition possible";
         }
         else
         {
-            cout<<"false";
+            cout<<"partition not possible";
         }
 
     }
