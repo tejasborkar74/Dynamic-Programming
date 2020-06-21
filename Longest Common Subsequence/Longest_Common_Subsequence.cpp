@@ -52,6 +52,39 @@ int LCSdp(string a,string b,int n,int m)
     return dp[n][m];
 }
 
+string printLCS(string a,string b)
+{
+    LCSdp(a,b,a.length(),b.length());
+
+    string ans="";
+
+    int i=a.length(),j=b.length();
+
+    while(i>0 && j>0)
+    {
+        if(a[i-1]==b[j-1])
+        {
+            ans.push_back(a[i-1]);
+            i--;
+            j--;
+        }
+        else
+        {
+            if(dp[i-1][j] > dp[i][j-1])i--;
+
+            else
+                j--;
+        }
+    }
+
+    for(i=0,j=ans.length()-1; i<j ; i++ ,j--)
+    {
+        swap(ans[i],ans[j]);
+    }
+
+    return ans;
+}
+
 int main()
 {
     memset(dp,-1,sizeof(dp));
@@ -59,5 +92,6 @@ int main()
     string b="abedfh";
 
     //cout<<LCS(a,b,a.length(),b.length());
-    cout<<LCSdp(a,b,a.length(),b.length());
+    //cout<<LCSdp(a,b,a.length(),b.length());
+    cout<<printLCS(a,b);
 }
